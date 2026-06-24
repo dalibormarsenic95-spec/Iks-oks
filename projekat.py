@@ -1,3 +1,20 @@
+     def napravi_potez(self, v, c):
+         if self.T[v][c] == 0:
+             self.T[v][c] = self.igrac
+              if self.provjeri_pobjedu(): return "pobjeda"
+              self.igrac = 2 if self.igrac == 1 else 1
+              if not any(0 in red for red in self.T): return "remi"
+              return "nastavi"
+         return "nevalidno"
+
+     def provjeri_pobjedu(self):
+         for i in range(3):
+             if self.T[i][0] == self.T[i][1] == self.T[i][2] != 0: return True
+             if self.T[0][i] == self.T[1][i] == self.T[2][i] != 0: return True
+         if self.T[0][0] == self.T[1][1] == self.T[2][2] != 0: return True
+         if self.T[0][2] == self.T[1][1] == self.T[2][0] != 0: return True
+         return False
+ 
  class IksOksGUI:
      def __init__(self, root):
          self.root = root
